@@ -12,6 +12,7 @@
 // --*Bonus* include a 1-click download button for each gif that works on all devices
 // --*Bonus* integrate this search with additional APIs.
 // --*Bonus* allow users to add their fav gifs to a 'favorites' section
+$(document).ready(function () {
 
 var topics=["pizza","sushi","mexican food","burgers"];
 for (var i = 0; i < topics.length; i++){
@@ -26,7 +27,9 @@ $("button").on("click", function() {
     clear();
 var topics = $(this).attr("data-topics");
 var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-topics + "_s.gif&api_key=Td2YRT2jyEnZurMPZcbBsjKTTj7LSEug&limit=10";
+// topics + "_s.gif&api_key=Td2YRT2jyEnZurMPZcbBsjKTTj7LSEug&limit=10";
+topics + "&api_key=Td2YRT2jyEnZurMPZcbBsjKTTj7LSEug&limit=10";
+
 
 $.ajax({
     url: queryURL,
@@ -38,12 +41,32 @@ $.ajax({
 
     for (var i = 0; i < results.length; i++) {
         var foodDiv = $("<div>");
-        var p = $("<p>").text("Rating;" + results[i].rating);
-        var foodImg = $("<img>");
-        foodImg.attr("src", results[i].images.fixed_height.url);
+        var p = $("<div>").text("Rating;" + results[i].rating);
+        var foodImage = $("<img>");
+        foodImage.attr("src", results[i].images.fixed_height_small_still.url); // still image stored into src of image
+        foodImage.attr("data-still",results[i].images.fixed_height_small_still.url); // still image
+        foodImage.attr("data-animate",results[i].images.fixed_height_small.url); // animated image
+        foodImage.attr("data-state", "still"); // set the image state
+        foodImage.addClass("image");
         foodDiv.append(p);
-        foodDiv.append(foodImg);
+        foodDiv.append(foodImage);
+
         $("#gifs").prepend(foodDiv);
+
+        $(".image").on("click", function() {
+            // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
+            var state = $(this).attr("data-state");
+            // If the clicked image's state is still, update its src attribute to what its data-animate value is.
+            // Then, set the image's data-state to animate
+            // Else set src to the data-still value
+            if (state === "still") {
+              $(this).attr("src", $(this).attr("data-animate"));
+              $(this).attr("data-state", "animate");
+            } else {
+              $(this).attr("src", $(this).attr("data-still"));
+              $(this).attr("data-state", "still");
+            }
+          });
     }
 });
 });
@@ -51,3 +74,4 @@ $.ajax({
 function clear() {
     $("#gifs").empty();
 }
+});
