@@ -1,0 +1,19 @@
+body {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.gifpictures {
+    float: left;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+h4 {
+    margin-top: 2px;
+    font-size: 14px;
+}
+
+button {
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
