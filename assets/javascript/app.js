@@ -16,24 +16,24 @@
 $(document).ready(function () {
   // set up variable topics with values *** got the CORES error with that variable so used gifs instead
   var gifs=["Loop","3d","Pixel","Art","Psychedelic","Collage"];
-
-// function to display the Gifs
-function displaygifShow () {
-  var gif = $(this).attr("data-name");
-  // Storing the giphy API URL for gifs using the art name
-  var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-  gif + "&api_key=Td2YRT2jyEnZurMPZcbBsjKTTj7LSEug&limit=10";
-
-  // performing an AJAX GET request to our queryURL
-  $.ajax({
-      url: queryURL,
-      method: "GET"
-  // After the data from the AJAX request comes back
-  }).then(function(response){
-      $("#gifView").empty();
-      // storing the data from the AJAX request in the results variable
-      var results = response.data;
-      // looping through the returned results and creating variables for the divs & rating
+  
+  // function to display the Gifs
+  function displaygifShow () {
+      var gif = $(this).attr("data-name");
+      // Storing the giphy API URL for gifs using the art name
+      var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+      gif + "&api_key=Td2YRT2jyEnZurMPZcbBsjKTTj7LSEug&limit=10";
+      
+      // performing an AJAX GET request to our queryURL
+      $.ajax({
+          url: queryURL,
+          method: "GET"
+          // After the data from the AJAX request comes back
+        }).then(function(response){
+            $("#gifView").empty();
+            // storing the data from the AJAX request in the results variable
+            var results = response.data;
+            // looping through the returned results and creating variables for the divs & rating
       for (var i = 0; i < results.length; i++) {
           var gifDiv = $("<div>");
           gifDiv.addClass("gifpictures");
@@ -52,23 +52,23 @@ function displaygifShow () {
           // prepending the gifImage and gifDiv for display
           gifDiv.prepend(gifImage);
           $("#gifView").prepend(gifDiv);
-      }
-      // creating the click event, if the images's state is still, update its src attr to the data-animate value.
-      $(".gifImage").on("click", function() {
-          var state = $(this).attr("data-state");
-          if (state === "still") {
-              $(this).attr("src", $(this).attr("data-animate"));
-              // then set the image's data-state to animate
-              $(this).attr("data-state", "animate");
-          } else {
-              // else set the src to the data-still value
+        }
+        // creating the click event, if the images's state is still, update its src attr to the data-animate value.
+        $(".gifImage").on("click", function() {
+            var state = $(this).attr("data-state");
+            if (state === "still") {
+                $(this).attr("src", $(this).attr("data-animate"));
+                // then set the image's data-state to animate
+                $(this).attr("data-state", "animate");
+            } else {
+                // else set the src to the data-still value
               $(this).attr("src", $(this).attr("data-still"));
               $(this).attr("data-state", "still");
-          }
+            }
         });
     });
-  }
-  // make sure the #gifButtons div is empty then loop through the gifs(topics) and add a button tag to each one with class, attr, & text
+}
+// make sure the #gifButtons div is empty then loop through the gifs(topics) and add a button tag to each one with class, attr, & text
   // then append to the #gifButtons div for display
   function renderButtons() {
       $("#gifButtons").empty();
@@ -78,18 +78,28 @@ function displaygifShow () {
           gifAdd.attr("data-name", gifs[i]);
           gifAdd.text(gifs[i]);
           $("#gifButtons").append(gifAdd);
-      }
+        }
     }
     // creating the click event to accept text inputted by the user and push it into the gifs(topics) array.
     $("#add-gif").on("click", function(event) {
         event.preventDefault();
         // this grabs the text inputted and trims any leading or trailing spaces
         var gif = $("#gif-input").val().trim();
+        // convert users text input to have uppercase first letter like other buttons
+        $("#gif-input").keyup(function() {
+            var gif = $("#gif-input").val();
+            gif = gif.charAt(0).toUpperCase() + gif.slice(1);
+            $("#gif-input").val(gif);
+        });
         // the text is added to the initial array that was set up
-        gifs.push(gif);
-
+        console.log(gif);
+        // prevent the user from adding the same button again
+        if ($.inArray(gif, gifs) === -1) {
+            gifs.push(gif);
+        console.log(gifs);
         // calling the renderButtons function to process the array
         renderButtons();
+        }
     });
     // adding click event listeners to all elements with a class of gif
     $(document).on("click", ".gif", displaygifShow);
