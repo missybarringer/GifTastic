@@ -13,65 +13,72 @@
 // --*Bonus* integrate this search with additional APIs.
 // --*Bonus* allow users to add their fav gifs to a 'favorites' section
 $(document).ready(function () {
+  // set up variable topics with values
+  var gifs=["pizza","sushi","mexican food","burgers"];
 
-var topics=["pizza","sushi","mexican food","burgers"];
-for (var i = 0; i < topics.length; i++){
-    var topicsBtn = $("<button>");
-    topicsBtn.addClass("topics-button topics topics-button-color");
-    topicsBtn.attr("data-topics", topics[i]);
-    topicsBtn.text(topics[i]);
-    $("#buttons").append(topicsBtn);
-}
+function displaygifShow () {
+  var gif = $(this).attr("data-name");
+  var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+  // topics + "_s.gif&api_key=Td2YRT2jyEnZurMPZcbBsjKTTj7LSEug&limit=10";
+  gif + "&api_key=Td2YRT2jyEnZurMPZcbBsjKTTj7LSEug&limit=10";
 
-$("button").on("click", function() {
-    clear();
-var topics = $(this).attr("data-topics");
-var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-// topics + "_s.gif&api_key=Td2YRT2jyEnZurMPZcbBsjKTTj7LSEug&limit=10";
-topics + "&api_key=Td2YRT2jyEnZurMPZcbBsjKTTj7LSEug&limit=10";
+  // AJAX call for the gif buttons
+  $.ajax({
+      url: queryURL,
+      method: "GET"
+  }).then(function(response){
+      $("#gifview").empty();
+      var results = response.data;
 
+      for (var i = 0; i < results.length; i++) {
+          var gifDiv = $("<div>");
+          gifDiv.addClass("gifpictures");
+          var rating = results[i].rating;
+          var p = $("<h2>").text("Rating: " + rating);
 
-$.ajax({
-    url: queryURL,
-    method: "GET"
-})
-.then(function(response) {
-    console.log(queryURL, response);
-    var results = response.data;
+          var gifImage = $("<img>");
+          gifImage.attr("src", results[i].images.fixed_height_still.url);
+          gifImage.attr("data-still", results[i].images.fixed_height_still.url);
+          gifImage.attr("data-animate", results[i].images.fixed_height.url);
+          gifImage.attr("data-state", "still");
+          gifImage.addClass("gifImage");
 
-    for (var i = 0; i < results.length; i++) {
-        var foodDiv = $("<div>");
-        var p = $("<div>").text("Rating;" + results[i].rating);
-        var foodImage = $("<img>");
-        foodImage.attr("src", results[i].images.fixed_height_small_still.url); // still image stored into src of image
-        foodImage.attr("data-still",results[i].images.fixed_height_small_still.url); // still image
-        foodImage.attr("data-animate",results[i].images.fixed_height_small.url); // animated image
-        foodImage.attr("data-state", "still"); // set the image state
-        foodImage.addClass("image");
-        foodDiv.append(p);
-        foodDiv.append(foodImage);
+          gifDiv.prepend(p);
 
-        $("#gifs").prepend(foodDiv);
+          gifDiv.prepend(gifImage);
+          $("#gifview").prepend(gifDiv);
+      }
 
-        $(".image").on("click", function() {
-            // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
-            var state = $(this).attr("data-state");
-            // If the clicked image's state is still, update its src attribute to what its data-animate value is.
-            // Then, set the image's data-state to animate
-            // Else set src to the data-still value
-            if (state === "still") {
+      $(".gifImage").on("click", function() {
+          var state = $(this).attr("data-state");
+          if (state === "still") {
               $(this).attr("src", $(this).attr("data-animate"));
               $(this).attr("data-state", "animate");
-            } else {
+          } else {
               $(this).attr("src", $(this).attr("data-still"));
               $(this).attr("data-state", "still");
-            }
-          });
+          }
+        });
+    });
+  }
+  function renderButtons() {
+      $("#gifbuttons").empty();
+      for (var i = 0; i < gifs.length; i++) {
+          var gifAdd = $("<button>");
+          gifAdd.addClass("gif");
+          gifAdd.attr("data-name", gifs[i]);
+          gifAdd.text(gifs[i]);
+          $("#gifbuttons").append(gifAdd);
+      }
     }
-});
-});
 
-function clear() {
-    $("#gifs").empty();
-}
+    $("#add-gif").on("click", function(event) {
+        event.preventDefault();
+        var gif = $("#gif-input").val().trim();
+        gifs.push(gif);
+        renderButtons();
+    });
+
+    $(document).on("click", ".gif", displaygifShow);
+    renderButtons();
 });
