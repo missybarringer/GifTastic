@@ -12,6 +12,7 @@
 // --*Bonus* include a 1-click download button for each gif that works on all devices
 // --*Bonus* integrate this search with additional APIs.
 // --*Bonus* allow users to add their fav gifs to a 'favorites' section
+// Added to main portfolio page at https://missybarringer.github.io/
 
 $(document).ready(function () {
   // set up variable topics with values *** got the CORES error with that variable so used gifs instead
