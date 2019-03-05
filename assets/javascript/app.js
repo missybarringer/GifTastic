@@ -74,6 +74,11 @@ $(document).ready(function () {
               $(this).attr("data-state", "still");
             }
         });
+        // didn't get working
+        // $(".gifAdd").on("click", function() {
+        //     var total= Number(total)+10;
+        //     console.log(total);
+        // });
     });
 }
 // make sure the #gifButtons div is empty then loop through the gifs(topics) and add a button tag to each one with class, attr, & text
