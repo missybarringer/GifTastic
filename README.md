@@ -1,6 +1,14 @@
 # GifTastic
-#SubtlePattern background Made by Vikas Kumar Singh
-#art sign Photo by Ian Williams on Unsplash
+
+## Contributors
+@missybarringer
+____________________________________
+## Technology
+* CSS3, HTML5, Javascript, Bootstrap, jQuery
+* [GitHub Repository Link](https://github.com/missybarringer/GifTastic.git)
+____________________________________
+## About - Vandy Bootcamp assignment with the following instructions...
+### Overview
 
 2. **[Watch the demo video](https://youtu.be/BqreERTLjgQ)**
 
@@ -49,4 +57,22 @@ ________________________________________________________________________________
 6. Allow users to add their favorite gifs to a `favorites` section.
    * This should persist even when they select or add a new topic.
    * If you are looking for a major challenge, look into making this section persist even when the page is reloaded(via localStorage or cookies).
-
+____________________________________
+#### Contributors
+*SubtlePattern background Made by Vikas Kumar Singh
+*art sign Photo by Ian Williams on Unsplash
+____________________________________
+## License
+*This product is licensed under the MIT License (MIT).
+____________________________________
+## Contributing Guidelines
+All contributions and suggestions are welcome!
+For direct contributions, please fork the repository and file a pull request.
+____________________________________
+## Contact
+* [Website published here](https://missybarringer.github.io/GifTastic/)
+* e-mail: barringer.margaret@gmail.com
+* Twitter: @goatfeatherfarm
+* Facebook: @goatfeatherfarm
+* Instagram: @goatfeatherfarm
+* Added to [Personal Portfolio webpage](https://missybarringer.github.io/)

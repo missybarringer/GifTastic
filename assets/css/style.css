@@ -16,9 +16,7 @@ hr.style1 {
 }
 
 #gifButtons{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: block;
 }
 
 .gifpictures {

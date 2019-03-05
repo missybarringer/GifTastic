@@ -20,6 +20,7 @@ $(document).ready(function () {
   // function to display the Gifs
   function displaygifShow () {
       var gif = $(this).attr("data-name");
+      // setting # of gifs to return to 10
       var limit = 10;
       // Storing the giphy API URL for gifs using the art name
       var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
@@ -38,6 +39,7 @@ $(document).ready(function () {
       for (var i = 0; i < results.length; i++) {
           var gifDiv = $("<div>");
           gifDiv.addClass("gifpictures");
+          // didn't like the look of the title so didn't use
           var gifTitle = $("<div>");
           gifTitle.addClass("gifTitle");
           var rating = results[i].rating;
@@ -81,7 +83,7 @@ $(document).ready(function () {
         // });
     });
 }
-// make sure the #gifButtons div is empty then loop through the gifs(topics) and add a button tag to each one with class, attr, & text
+  // make sure the #gifButtons div is empty then loop through the gifs(topics) and add a button tag to each one with class, attr, & text
   // then append to the #gifButtons div for display
   function renderButtons() {
       $("#gifButtons").empty();
