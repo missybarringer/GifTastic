@@ -1,16 +1,41 @@
 body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-image: url("../images/diagonal-squares.png");
+}
+
+.jumbotron {
+    background-image: url("../images/ian-williams-238621-unsplash.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: black;
+    height: 150px;
+}
+
+hr.style1 {
+    border-top: 5px double black;
+}
+
+#gifButtons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .gifpictures {
     float: left;
     margin-left: 10px;
     margin-top: 10px;
+    border: 6px double black;
+}
+
+#gif-form {
+    color: white;
 }
 
 h4 {
     margin-top: 2px;
     font-size: 14px;
+    color: white;
 }
 
 button {

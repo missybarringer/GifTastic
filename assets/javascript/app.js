@@ -20,9 +20,10 @@ $(document).ready(function () {
   // function to display the Gifs
   function displaygifShow () {
       var gif = $(this).attr("data-name");
+      var limit = 10;
       // Storing the giphy API URL for gifs using the art name
       var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-      gif + "&api_key=Td2YRT2jyEnZurMPZcbBsjKTTj7LSEug&limit=10";
+      gif + "&api_key=Td2YRT2jyEnZurMPZcbBsjKTTj7LSEug&limit=" + limit;
       
       // performing an AJAX GET request to our queryURL
       $.ajax({
@@ -37,7 +38,11 @@ $(document).ready(function () {
       for (var i = 0; i < results.length; i++) {
           var gifDiv = $("<div>");
           gifDiv.addClass("gifpictures");
+          var gifTitle = $("<div>");
+          gifTitle.addClass("gifTitle");
           var rating = results[i].rating;
+          var title = results[i].title;
+          var t = $("<h4>").text("Title: " + title);
           var p = $("<h4>").text("Rating: " + rating);
           // creating & storing an image tag in gifImage variable
           var gifImage = $("<img>");
@@ -47,7 +52,10 @@ $(document).ready(function () {
           gifImage.attr("data-animate", results[i].images.fixed_height_small.url);
           gifImage.attr("data-state", "still");
           gifImage.addClass("gifImage");
+
           // prepending the rating for display
+          gifTitle.prepend(t);
+
           gifDiv.prepend(p);
           // prepending the gifImage and gifDiv for display
           gifDiv.prepend(gifImage);
