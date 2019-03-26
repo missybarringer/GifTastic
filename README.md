@@ -59,7 +59,6 @@ ____________________________________
 ## Contact
 * [Website published here](https://missybarringer.github.io/GifTastic/)
 * e-mail: barringer.margaret@gmail.com
-* Twitter: @goatfeatherfarm
-* Facebook: @goatfeatherfarm
-* Instagram: @goatfeatherfarm
+* Twitter: @WebWabiSabi
+* Instagram: @WebWabiSabi
 * Added to [Personal Portfolio webpage](https://missybarringer.github.io/)
