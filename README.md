@@ -7,19 +7,7 @@ ____________________________________
 * CSS3, HTML5, Javascript, Bootstrap, jQuery
 * [GitHub Repository Link](https://github.com/missybarringer/GifTastic.git)
 ____________________________________
-## About - Vandy Bootcamp assignment with the following instructions...
-### Overview
-
-2. **[Watch the demo video](https://youtu.be/BqreERTLjgQ)**
-
-   * You should have a high-level understanding of how this assignment works before attempting to code it.
-
-### Submission on BCS
-
-* Please submit both the deployed Github.io link to your homework AND the link to the Github Repository!
-
-### Instructions
-
+### Overview of the problem
 1. Before you can make any part of our site work, you need to create an array of strings, each one related to a topic that interests you. Save it to a variable called `topics`.
    * We chose animals for our theme, but you can make a list to your own liking.
 
@@ -36,27 +24,26 @@ ____________________________________
 
 6. Add a form to your page takes the value from a user input box and adds it into your `topics` array. Then make a function call that takes each topic in the array remakes the buttons on the page.
 
-7. Deploy your assignment to Github Pages.
-
-8. **Rejoice**! You just made something really cool.
 _________________________________________________________________________________
 
-### Bonus Goals
+### Solution to the problem
+* create an array of themed strings, each one related to a topic & save it to a variable called 'topics'
+* take the topics in the array and create buttons in your HTML---try using a loop t that appends a button for each string in the array
+* when user clicks a button, display 10 static images from the GIPHY API & display on page
+* when user clicks a gif it should go to the animated version and if they click again it goes back to the static version
+* under every gif display it's rating
+* add a form to page that takes the user input from it and addes it to the 'topics' array
+* then make a function call that takes each topic in the array & remakes the buttons on the page
+* Make fully mobile responsive
+_________________________________________________________________________________
 
-1. Ensure your app is fully mobile responsive.
-
-2. Allow users to request additional gifs to be added to the page.
-   * Each request should ADD 10 gifs to the page, NOT overwrite the existing gifs.
-
-3. List additional metadata (title, tags, etc) for each gif in a clean and readable format.
-
-4. Include a 1-click download button for each gif, this should work across device types.
-
-5. Integrate this search with additional APIs such as OMDB, or Bands in Town. Be creative and build something you are proud to showcase in your portfolio
-
-6. Allow users to add their favorite gifs to a `favorites` section.
-   * This should persist even when they select or add a new topic.
-   * If you are looking for a major challenge, look into making this section persist even when the page is reloaded(via localStorage or cookies).
+### Technical Approach
+* created the variable for the topic values
+* created the function to display the gifs
+* created the AJAX GET request to the Giphy API and prepended when they were returned
+* created a click event to determine if the image was still or animated & updated the gifs state
+* made sure the div was empty then looped through then added a button with appropriate info
+* finally created the click event to accept the users input and pushed it to the gifs array
 ____________________________________
 #### Contributors
 *SubtlePattern background Made by Vikas Kumar Singh
